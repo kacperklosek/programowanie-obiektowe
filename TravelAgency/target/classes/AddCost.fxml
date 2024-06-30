@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ur.travel.controller.AddCostController" style="-fx-background-color: #f0f8ff;">
+   <children>
+      <Text layoutX="21.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj koszt:" wrappingWidth="110.2373046875" style="-fx-fill: #333333; -fx-font-family: 'Arial'; -fx-font-size: 21;">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nameField" layoutX="88.0" layoutY="63.0" style="-fx-background-color: #ffffff; -fx-border-color: #b0c4de; -fx-border-radius: 5; -fx-padding: 5 10 5 10; -fx-font-size: 14px;" />
+      <TextField fx:id="costField" layoutX="88.0" layoutY="99.0" style="-fx-background-color: #ffffff; -fx-border-color: #b0c4de; -fx-border-radius: 5; -fx-padding: 5 10 5 10; -fx-font-size: 14px;" />
+      <Text layoutX="31.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opis" wrappingWidth="57.2373046875" style="-fx-fill: #333333; -fx-font-family: 'Arial'; -fx-font-size: 14;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="31.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wartość" wrappingWidth="57.2373046875" style="-fx-fill: #333333; -fx-font-family: 'Arial'; -fx-font-size: 14;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="accRBtn" layoutX="88.0" layoutY="144.0" mnemonicParsing="false" onMouseClicked="#accClick" text="zakwaterowanie" style="-fx-text-fill: #333333; -fx-font-family: 'Arial';" />
+      <RadioButton fx:id="resRBtn" layoutX="208.0" layoutY="144.0" mnemonicParsing="false" onMouseClicked="#resClick" text="rezerwacja" style="-fx-text-fill: #333333; -fx-font-family: 'Arial';" />
+      <RadioButton fx:id="ticketRBtn" layoutX="310.0" layoutY="144.0" mnemonicParsing="false" onMouseClicked="#ticketClick" text="bilet" style="-fx-text-fill: #333333; -fx-font-family: 'Arial';" />
+      <Text layoutX="31.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ" wrappingWidth="57.2373046875" style="-fx-fill: #333333; -fx-font-family: 'Arial'; -fx-font-size: 14;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="addBtn" layoutX="423.0" layoutY="274.0" mnemonicParsing="false" onAction="#addClick" text="Dodaj" style="-fx-background-color: #4682b4; -fx-text-fill: #ffffff; -fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-padding: 5 15 5 15; -fx-border-radius: 5; -fx-background-radius: 5;" />
+      <Button fx:id="cancelBtn" layoutX="357.0" layoutY="274.0" mnemonicParsing="false" onAction="#close" text="Anuluj" style="-fx-background-color: #4682b4; -fx-text-fill: #ffffff; -fx-font-family: 'Arial'; -fx-font-size: 14px; -fx-padding: 5 15 5 15; -fx-border-radius: 5; -fx-background-radius: 5;" />
+   </children>
+</Pane>

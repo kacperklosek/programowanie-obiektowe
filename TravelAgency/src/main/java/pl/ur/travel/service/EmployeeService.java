@@ -30,7 +30,6 @@ public class EmployeeService extends AbstractService {
                                 )
                         )
                 );
-        // TODO error handling, what if the offer is not present?
     }
 
     public void updateOffer(UUID offerId, Offer offer) {
@@ -64,10 +63,11 @@ public class EmployeeService extends AbstractService {
     }
 
     public void deleteCostFromOffer(UUID offerId, UUID costId) {
-//        ocr.selectAll()
-//                .stream()
-//                .map()
-//        ocr.deleteById();
-        // todo
+        ocr.selectAll()
+                .stream()
+                .filter(it -> it.offerId().equals(offerId))
+                .filter(it -> it.costId().equals(costId))
+                .map(OfferCost::id)
+                .forEach(ocr::deleteById);
     }
 }

@@ -53,7 +53,7 @@ public class OfferRepository extends AbstractRepository<Offer> {
         return new Offer(
                 UUID.fromString(rs.getString("id")),
                 rs.getString("name"),
-                rs.getInt("id") != 0
+                rs.getInt("accepted") == 0 // hack
         );
     }
 }

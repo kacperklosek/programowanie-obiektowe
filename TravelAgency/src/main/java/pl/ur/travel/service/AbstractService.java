@@ -20,6 +20,11 @@ public class AbstractService {
     public List<Offer> getAllOffers() {
         return this.or.selectAll();
     }
+
+    public List<Cost> getAllCosts() {
+        return this.cr.selectAll();
+    }
+
     public AbstractService(final OfferRepository or, final CostsRepository cr, final OfferCostsRepository ocr) {
         this.or = or;
         this.cr = cr;
@@ -27,11 +32,12 @@ public class AbstractService {
     }
 
     public List<Cost> getAllCostsForOffer(UUID offerId) {
-        return getAllCostsForOfferCosts(getOfferCostsForOfferId(offerId));
+        List<OfferCost> offerCostsForOfferId = getOfferCostsForOfferId(offerId);
+        return getAllCostsForOfferCosts(offerCostsForOfferId);
     }
 
     public List<Cost> getAllCostsForOfferCosts(List<OfferCost> ocs) {
-        return ocs.stream().map(oc -> cr.selectById(oc.id()))
+        return ocs.stream().map(oc -> cr.selectById(oc.costId()))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .toList();

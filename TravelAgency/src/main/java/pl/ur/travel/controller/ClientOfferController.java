@@ -9,12 +9,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.ur.travel.ServiceProvider;
+import pl.ur.travel.model.dao.Cost;
 import pl.ur.travel.model.dao.Offer;
 
 import java.io.IOException;
+import java.util.Collection;
 
 public class ClientOfferController {
 
@@ -24,32 +27,63 @@ public class ClientOfferController {
     private ObservableList<Offer> offersView;
 
     @FXML
+    private Text totalToBePaid;
+
+    @FXML
+    private Button closeBtn;
+
+    private Stage stage;
+
+    public void init(Stage stage) {
+        this.stage = stage;
+    }
+
+    public void close() {
+        this.stage.close();
+    }
+
+    @FXML
     public void initialize() {
         offersView = FXCollections.observableList(ServiceProvider.eS.getAllOffers());
 
         offersList.setItems(offersView);
 
         offersList.setCellFactory(listView -> new OfferListCell());
+
+        totalToBePaid.setText(
+                String.valueOf(ServiceProvider.uS.getAllOffers()
+                        .stream()
+                        .filter(offer -> !offer.accepted())
+                        .map(Offer::id)
+                        .map(ServiceProvider.uS::getAllCostsForOffer)
+                        .flatMap(Collection::stream)
+                        .map(Cost::cost)
+                        .reduce(Double::sum)
+                        .orElse(0.0)
+                )
+        );
     }
 
-    private static class OfferListCell extends ListCell<Offer> {
+    private class OfferListCell extends ListCell<Offer> {
         private Button detailsButton;
 
         public OfferListCell() {
             super();
 
-            detailsButton = new Button("Details");
+            detailsButton = new Button("Szczegóły");
+
             detailsButton.setOnAction(event -> {
                 var offer = getItem();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/OfferDetailsClient.fxml"));
                 try {
                     Parent root = loader.load();
                     ClientDetailsController controller = loader.getController();
-                    controller.initData(offer.id(), offer.name());
-                    // Create a new stage
                     Stage stage = new Stage();
+                    controller.initData(stage, offer.id(), offer.name(), ClientOfferController.this::initialize);
+
+                    // Create a new stage
                     stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.setTitle("Details Window");
+                    stage.setTitle("Szczegóły");
                     stage.setScene(new Scene(root, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT));
 
                     // Show the stage
