@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ur.travel.controller.AddCostController">
+   <children>
+      <Text layoutX="21.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj koszt:" wrappingWidth="110.2373046875">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nameField" layoutX="88.0" layoutY="63.0" />
+      <TextField fx:id="costField" layoutX="88.0" layoutY="99.0" />
+      <Text layoutX="31.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opis" wrappingWidth="57.2373046875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="31.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wartość" wrappingWidth="57.2373046875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="accRBtn" layoutX="88.0" layoutY="144.0" mnemonicParsing="false" onMouseClicked="#accClick" text="zakwaterowanie" />
+      <RadioButton fx:id="resRBtn" layoutX="208.0" layoutY="144.0" mnemonicParsing="false" onMouseClicked="#resClick" text="rezerwacja" />
+      <RadioButton fx:id="ticketRBtn" layoutX="310.0" layoutY="144.0" mnemonicParsing="false" onMouseClicked="#ticketClick" text="bilet" />
+      <Text layoutX="31.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ" wrappingWidth="57.2373046875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="addBtn" layoutX="423.0" layoutY="274.0" mnemonicParsing="false" onAction="#addClick" text="Dodaj" />
+      <Button fx:id="cancelBtn" layoutX="357.0" layoutY="274.0" mnemonicParsing="false" onAction="#close" text="Anuluj" />
+   </children>
+</Pane>
